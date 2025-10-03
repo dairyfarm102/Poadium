@@ -235,7 +235,7 @@ const Careers: React.FC = () => {
 
   return (
     <div className="bg-white relative">
-      {/* Success Popup */}
+      {/* Success Popup - FIXED FOR MOBILE */}
       <AnimatePresence>
         {showPopup && (
           <motion.div
@@ -243,19 +243,19 @@ const Careers: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
             transition={{ duration: 0.3 }}
-            className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md"
+            className="fixed inset-x-4 top-4 z-50 mx-auto max-w-md md:left-1/2 md:transform md:-translate-x-1/2"
           >
-            <div className="bg-green-50 border border-green-200 rounded-xl shadow-2xl p-4 mx-4">
+            <div className="bg-green-50 border border-green-200 rounded-xl shadow-2xl p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <div className="flex-shrink-0">
                     <CheckCircle className="h-6 w-6 text-green-600" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-sm font-semibold text-green-800">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-sm font-semibold text-green-800 truncate">
                       Application Submitted!
                     </h3>
-                    <p className="text-sm text-green-700 mt-1">
+                    <p className="text-sm text-green-700 mt-1 line-clamp-2">
                       We'll review your application and contact you soon.
                     </p>
                   </div>
