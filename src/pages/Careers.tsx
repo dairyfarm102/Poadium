@@ -134,7 +134,7 @@ const Careers: React.FC = () => {
       formDataToSend.append('coverLetter', formData.coverLetter);
       formDataToSend.append('resume', formData.resume);
 
-      const response = await fetch('http://localhost:5000/submit-application', {
+      const response = await fetch('https://akshith102.pythonanywhere.com/submit-application', {
         method: 'POST',
         body: formDataToSend,
       });
