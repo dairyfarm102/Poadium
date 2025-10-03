@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, MessageCircle, Users, Clock } from 'lucide-react';
 
 const Contact: React.FC = () => {
-  const [heroRef, heroInView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [methodsRef, methodsInView] = useInView({ threshold: 0.05, triggerOnce: true });
   const [formRef, formInView] = useInView({ threshold: 0.05, triggerOnce: true });
 
@@ -94,36 +93,41 @@ Looking forward to hearing from you!
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-[40vh] flex items-center justify-center bg-gradient-to-br from-white via-blue-50 to-purple-50 pt-16">
+      <section className="relative min-h-[5vh] flex items-center justify-center bg-gradient-to-br from-white via-blue-50 to-purple-50 pt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <motion.div 
-            className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold text-slate-900 mb-4 md:mb-6 leading-tight">
+          <div className="text-center">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-4xl md:text-6xl lg:text-7xl font-bold text-slate-900 mb-4 leading-none"
+            >
               Let's{' '}
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Connect
               </span>
-            </h1>
-            <p className="text-[1.05rem] md:text-[1.15rem] text-slate-600 mb-6 md:mb-8 max-w-4xl mx-auto leading-relaxed px-4">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-base md:text-lg text-slate-600 mb-8 max-w-xl mx-auto"
+            >
               Ready to turn your innovative ideas into reality? Get in touch and let's start the conversation.
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
         </div>
-        
-        {/* Background Pattern */}
-        <div className="absolute inset-0 -z-10 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0,0,0,0.2) 1px, transparent 0)`,
-            backgroundSize: '50px 50px'
-          }}></div>
-        </div>
-      </section>
+              
+          {/* Background Pattern */}
+          <div className="absolute inset-0 -z-10 opacity-10">
+            <div className="absolute inset-0" style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0,0,0,0.2) 1px, transparent 0)`,
+              backgroundSize: '50px 50px'
+            }}></div>
+          </div>
+        </section>
 
-      {/* Contact Methods */}
+        {/* Contact Methods */}
       <section ref={methodsRef} className="py-12 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
