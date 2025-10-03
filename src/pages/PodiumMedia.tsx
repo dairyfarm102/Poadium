@@ -13,6 +13,13 @@ import {
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 
+// Import all images first
+import filmImage from '../../images/media/film.png';
+import adImage from '../../images/media/ad.png';
+import docuImage from '../../images/media/docu.png';
+import creativeImage from '../../images/media/crative.png';
+import consultancyImage from '../../images/media/consultancy.png';
+
 const PodiumMedia: React.FC = () => {
   const [heroRef, heroInView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [servicesRef, servicesInView] = useInView({ threshold: 0.05, triggerOnce: true });
@@ -24,7 +31,7 @@ const PodiumMedia: React.FC = () => {
       title: 'Film and Media',
       description: 'End-to-end film and media solutions covering feature films, short films, corporate videos, and OTT/web content.',
       detailedDescription: 'We offer comprehensive production services from concept development to final delivery. Our expertise spans scriptwriting, cinematography, editing, VFX, and sound design. We help businesses, educational institutions, and organizations communicate their vision through compelling visual storytelling that resonates with audiences.',
-      image: "/images/media/film.png",
+      image: filmImage,
       color: 'from-purple-500 to-purple-700',
       features: ['Feature Films', 'Short Films', 'Corporate Videos', 'OTT/Web Content', 'Scriptwriting', 'Cinematography', 'Editing & VFX', 'Sound Design']
     },
@@ -33,7 +40,7 @@ const PodiumMedia: React.FC = () => {
       title: 'Advertising Production',
       description: 'Impactful advertising campaigns across print, digital, television, and outdoor media.',
       detailedDescription: 'We create compelling advertising campaigns that capture attention and drive results. With a strong focus on brand identity, storytelling, and target audience engagement, our team ensures your message leaves a lasting impression across all media channels.',
-      image: "/images/media/ad.png",
+      image: adImage,
       color: 'from-orange-500 to-orange-700',
       features: ['Print Advertising', 'Digital Campaigns', 'TV Commercials', 'Outdoor Media', 'Brand Identity', 'Audience Engagement', 'Creative Storytelling']
     },
@@ -42,7 +49,7 @@ const PodiumMedia: React.FC = () => {
       title: 'Documentary',
       description: 'Professional documentary production services that bring real-life stories and institutional journeys to the screen.',
       detailedDescription: 'Our documentary production services capture authentic stories with cinematic excellence. From educational and social awareness films to corporate and government initiatives, we highlight meaningful narratives with professional production quality and emotional impact.',
-      image: "/images/media/docu.png",
+      image: docuImage,
       color: 'from-green-500 to-green-700',
       features: ['Educational Films', 'Social Awareness', 'Corporate Documentaries', 'Government Initiatives', 'Cinematic Storytelling', 'Research Documentation']
     },
@@ -51,7 +58,7 @@ const PodiumMedia: React.FC = () => {
       title: 'Allied Creative Services',
       description: 'Holistic creative services that enhance branding and communication strategies across multiple platforms.',
       detailedDescription: 'Beyond production, POADIUM provides comprehensive creative services that elevate your brand presence. These services cover graphic design, content creation, animation, digital art, and creative campaign support for both corporate and social initiatives.',
-      image: "/images/media/crative.png",
+      image: creativeImage,
       color: 'from-pink-500 to-pink-700',
       features: ['Graphic Design', 'Content Creation', 'Animation', 'Digital Art', 'Creative Campaigns', 'Brand Enhancement', 'Multi-platform Content']
     },
@@ -60,7 +67,7 @@ const PodiumMedia: React.FC = () => {
       title: 'Media Consultancy',
       description: 'Strategic media consulting to help organizations leverage media channels effectively for maximum impact.',
       detailedDescription: 'We offer strategic media consulting to businesses, government organizations, and educational institutions. Our consultancy helps clients leverage media channels effectively, ensuring optimal visibility, audience engagement, and reputation building in today\'s competitive landscape.',
-      image: "/images/media/consultancy.png",
+      image: consultancyImage,
       color: 'from-blue-500 to-blue-700',
       features: ['Media Strategy', 'Channel Optimization', 'Audience Analysis', 'Reputation Management', 'Visibility Planning', 'Engagement Metrics']
     }
