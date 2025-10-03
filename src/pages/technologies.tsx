@@ -12,6 +12,15 @@ import {
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 
+// Import all images first
+import cctvImage from '../../images/tech/cctv.jpeg';
+import lsdsImage from '../../images/tech/lsds.jpg';
+import cyberImage from '../../images/tech/cyber.png';
+import solarImage from '../../images/tech/solar.jpg';
+import wasteImage from '../../images/tech/waste.png';
+import conferenceImage from '../../images/tech/confarence.png';
+import docImage from '../../images/tech/doc.png';
+
 const PodiumTechnologies: React.FC = () => {
   const [heroRef, heroInView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [servicesRef, servicesInView] = useInView({ threshold: 0.05, triggerOnce: true });
@@ -23,7 +32,7 @@ const PodiumTechnologies: React.FC = () => {
       title: 'Surveillance Technology',
       description: 'POADIUM offers state-of-the-art surveillance solutions designed to ensure security, reliability, and peace of mind for institutions, businesses, and communities.',
       detailedDescription: 'Our systems integrate the latest advancements in monitoring, analytics, and automation to provide end-to-end security coverage. From advanced CCTV systems to intelligent monitoring solutions, we deliver comprehensive security infrastructure.',
-      image: "/images/tech/cctv.jpeg",
+      image: cctvImage,
       color: 'from-blue-500 to-blue-700',
       features: ['Advanced CCTV Systems', 'Intelligent Monitoring', '24/7 Security Coverage', 'Analytics & Automation']
     },
@@ -32,7 +41,7 @@ const PodiumTechnologies: React.FC = () => {
       title: 'Large-Scale Digital Solutions',
       description: 'At POADIUM, we specialize in end-to-end digital infrastructure development for enterprises, educational institutions, government agencies, and large organizations.',
       detailedDescription: 'Our solutions are scalable, future-ready, and integrated, ensuring clients can seamlessly adapt to rapidly evolving digital ecosystems. We build robust digital frameworks that grow with your organization.',
-      image: "/images/tech/lsds.jpg",
+      image: lsdsImage,
       color: 'from-purple-500 to-purple-700',
       features: ['Scalable Infrastructure', 'Future-Ready Systems', 'Enterprise Solutions', 'Government Digital Transformation']
     },
@@ -41,7 +50,7 @@ const PodiumTechnologies: React.FC = () => {
       title: 'Authentication and Cybersecurity',
       description: 'POADIUM delivers advanced authentication systems that combine biometrics, smart devices, and QR-code-based solutions to protect both physical and digital assets.',
       detailedDescription: 'In today\'s digital-first world, data protection and identity security are critical. POADIUM integrates authentication systems with advanced cybersecurity frameworks to safeguard both physical and digital ecosystems. Our solutions ensure trust, compliance, and resilience against threats such as counterfeiting, data breaches, and cyberattacks.',
-      image: "/images/tech/cyber.png",
+      image: cyberImage,
       color: 'from-red-500 to-red-700',
       features: ['Biometric Systems', 'Multi-Factor Authentication', 'Cybersecurity Frameworks', 'Threat Protection']
     },
@@ -50,7 +59,7 @@ const PodiumTechnologies: React.FC = () => {
       title: 'Solar Solutions',
       description: 'At POADIUM, we believe in delivering eco-friendly, renewable energy systems that reduce operational costs and environmental impact.',
       detailedDescription: 'Our Solar Solutions are designed for institutions, corporates, and industries to enable a sustainable energy transition while ensuring reliable performance and long-term savings. We provide comprehensive solar energy systems tailored to your specific needs.',
-      image: "/images/tech/solar.jpg",
+      image: solarImage,
       color: 'from-yellow-500 to-yellow-600',
       features: ['Renewable Energy Systems', 'Cost Reduction', 'Sustainable Transition', 'Long-term Savings']
     },
@@ -59,7 +68,7 @@ const PodiumTechnologies: React.FC = () => {
       title: 'Waste Management Solutions',
       description: 'POADIUM provides integrated waste management systems that help institutions, industries, and communities manage their waste efficiently.',
       detailedDescription: 'Our solutions focus on reduce, reuse, recycle, and recover, ensuring environmental compliance and long-term cost savings. We promote sustainability and circular economy practices through innovative waste management systems.',
-      image: "/images/tech/waste.png",
+      image: wasteImage,
       color: 'from-emerald-500 to-emerald-700',
       features: ['Integrated Systems', 'Circular Economy', 'Environmental Compliance', 'Cost Efficiency']
     },
@@ -68,7 +77,7 @@ const PodiumTechnologies: React.FC = () => {
       title: 'Audio Visual System',
       description: 'We have been actively restoring the classroom environment in the online hemisphere at times of pandemic.',
       detailedDescription: 'We provide Audio Visual Technology like Video Conferencing system, Video wall, Conference room setup, Auditorium Audio Visuals for different government departments. Our solutions enhance communication and collaboration in educational and professional settings.',
-      image: "/images/tech/confarence.png",
+      image: conferenceImage,
       color: 'from-indigo-500 to-indigo-700',
       features: ['Video Conferencing', 'Conference Room Setup', 'Auditorium Systems', 'Digital Collaboration']
     },
@@ -77,7 +86,7 @@ const PodiumTechnologies: React.FC = () => {
       title: 'Documentation and Administration',
       description: 'Handling of Vendor Projects - At POADIUM, we understand that successful vendor project execution requires structured documentation, seamless administration, and transparent coordination.',
       detailedDescription: 'Our approach ensures that every project is tracked, recorded, and executed with compliance, accountability, and efficiency. We provide comprehensive documentation and administrative support for smooth project delivery.',
-      image: "/images/tech/doc.png",
+      image: docImage,
       color: 'from-green-500 to-green-700',
       features: ['Structured Documentation', 'Vendor Coordination', 'Project Tracking', 'Compliance Management']
     }
