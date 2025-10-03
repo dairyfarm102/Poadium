@@ -35,7 +35,6 @@ interface FormData {
 }
 
 const Careers: React.FC = () => {
-  const [heroRef, heroInView] = useInView({ threshold: 0.1, triggerOnce: true });
   const [perksRef, perksInView] = useInView({ threshold: 0.05, triggerOnce: true });
   const [formRef, formInView] = useInView({ threshold: 0.05, triggerOnce: true });
 
@@ -235,7 +234,7 @@ const Careers: React.FC = () => {
 
   return (
     <div className="bg-white relative">
-      {/* Success Popup - FIXED FOR MOBILE */}
+      {/* Success Popup */}
       <AnimatePresence>
         {showPopup && (
           <motion.div
@@ -243,19 +242,19 @@ const Careers: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-x-4 top-4 z-50 mx-auto max-w-md md:left-1/2 md:transform md:-translate-x-1/2"
+            className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md"
           >
-            <div className="bg-green-50 border border-green-200 rounded-xl shadow-2xl p-4">
+            <div className="bg-green-50 border border-green-200 rounded-xl shadow-2xl p-4 mx-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <div className="flex-shrink-0">
                     <CheckCircle className="h-6 w-6 text-green-600" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-semibold text-green-800 truncate">
+                  <div className="flex-1">
+                    <h3 className="text-sm font-semibold text-green-800">
                       Application Submitted!
                     </h3>
-                    <p className="text-sm text-green-700 mt-1 line-clamp-2">
+                    <p className="text-sm text-green-700 mt-1">
                       We'll review your application and contact you soon.
                     </p>
                   </div>
@@ -283,24 +282,29 @@ const Careers: React.FC = () => {
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-[40vh] flex items-center justify-center bg-gradient-to-br from-white via-purple-50 to-pink-50 pt-16">
+      <section className="relative min-h-[5vh] flex items-center justify-center bg-gradient-to-br from-white via-purple-50 to-pink-50 pt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <motion.div 
-            className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold text-slate-900 mb-4 md:mb-6 leading-tight">
+          <div className="text-center">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-4xl md:text-6xl lg:text-7xl font-bold text-slate-900 mb-4 leading-none"
+            >
               Join{' '}
               <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 Our Team
               </span>
-            </h1>
-            <p className="text-[1.05rem] md:text-[1.15rem] text-slate-600 mb-6 md:mb-8 max-w-4xl mx-auto leading-relaxed px-4">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-base md:text-lg text-slate-600 mb-8 max-w-xl mx-auto"
+            >
               Ready to make an impact? Submit your application and let's start the conversation.
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
         </div>
         
         {/* Background Pattern */}
