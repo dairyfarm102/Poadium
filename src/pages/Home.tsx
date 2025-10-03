@@ -1,99 +1,157 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import heroBg from '../../images/bg.png';
+import { ArrowRight, Play } from 'lucide-react';
 
 const Home: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationFrameId: number;
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Animated particles
+    const particles: Array<{
+      x: number;
+      y: number;
+      size: number;
+      speedX: number;
+      speedY: number;
+      opacity: number;
+      color: string;
+    }> = [];
+
+    const colors = ['#3B82F6', '#06B6D4', '#8B5CF6']; // Blue, Cyan, Purple
+
+    // Initialize particles
+    for (let i = 0; i < 50; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 3 + 1,
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
+        opacity: Math.random() * 0.5 + 0.1,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      });
+    }
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Update and draw particles
+      particles.forEach((particle) => {
+        particle.x += particle.speedX;
+        particle.y += particle.speedY;
+
+        // Wrap around edges
+        if (particle.x < 0) particle.x = canvas.width;
+        if (particle.x > canvas.width) particle.x = 0;
+        if (particle.y < 0) particle.y = canvas.height;
+        if (particle.y > canvas.height) particle.y = 0;
+
+        // Draw particle
+        ctx.globalAlpha = particle.opacity;
+        ctx.fillStyle = particle.color;
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // Connect nearby particles
+      ctx.globalAlpha = 0.1;
+      ctx.strokeStyle = '#64748b';
+      ctx.lineWidth = 1;
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 100) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   return (
     <div className="bg-white">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-teal-900 pt-16 overflow-hidden">
-        {/* Background Image with Enhanced Blur */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${heroBg})`,
-          }}
-        >
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-[3px]"></div>
-        </div>
+      {/* Hero Section with Particle Background */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-16">
+        {/* Particle Background Canvas */}
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 z-0 bg-black"
+        />
         
-        {/* Subtle Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl animate-pulse delay-1500"></div>
-          <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-blue-900/10 to-black/50 z-10" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-          {/* Main Content with Animations */}
-          <div className="space-y-8">
-            {/* Animated Headline */}
+        {/* Content */}
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="space-y-8 animate-fade-in-up">
             <div className="space-y-6">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up">
-                Setting the Stage
-                <span className="block bg-gradient-to-r from-blue-400 to-teal-300 bg-clip-text text-transparent animate-gradient">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight">
+                <span className="bg-gradient-to-r from-blue-400 via-teal-400 to-purple-400 bg-clip-text text-transparent">
+                  Setting the Stage
+                </span>
+                <br />
+                <span className="text-white">
                   for Innovation
                 </span>
               </h1>
               
-              {/* Animated Subtitle */}
-              <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in-up delay-300">
-                We bring ideas, technology, and creativity together to deliver solutions that make an impact globally across multiple industries.
+              <p className="text-xl md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed">
+                We bring ideas, technology, and creativity together to deliver solutions 
+                that make an impact globally across multiple industries.
               </p>
             </div>
 
-            {/* Animated CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fade-in-up delay-500">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
               <Link
                 to="/about"
-                className="group relative bg-white text-slate-900 px-8 py-4 rounded-full font-semibold text-lg transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-3xl overflow-hidden"
+                className="group bg-gradient-to-r from-blue-600 to-teal-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2"
               >
-                <span className="relative z-10 group-hover:text-white transition-colors duration-300">
-                  Learn More
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                <span>Learn More</span>
+                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
               </Link>
               
               <Link
                 to="/contact"
-                className="group relative border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg transform hover:scale-105 transition-all duration-300 hover:bg-white hover:text-slate-900 backdrop-blur-sm"
+                className="group bg-white/10 backdrop-blur-sm text-white border-2 border-white/20 px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/20 hover:border-white/40 transition-all duration-300 flex items-center space-x-2"
               >
-                <span className="relative z-10">Contact Us</span>
+                <Play className="group-hover:scale-110 transition-transform" size={20} />
+                <span>Contact Us</span>
               </Link>
             </div>
           </div>
-        </div>
-
-        {/* Subtle Floating Particles - Reduced Count */}
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(8)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1.5 h-1.5 bg-white/20 rounded-full animate-subtle-float"
-              style={{
-                left: `${10 + Math.random() * 80}%`,
-                top: `${10 + Math.random() * 80}%`,
-                animationDelay: `${Math.random() * 8}s`,
-                animationDuration: `${15 + Math.random() * 15}s`,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Even more subtle secondary particles */}
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(5)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-white/15 rounded-full animate-very-subtle-float"
-              style={{
-                left: `${5 + Math.random() * 90}%`,
-                top: `${5 + Math.random() * 90}%`,
-                animationDelay: `${Math.random() * 10}s`,
-                animationDuration: `${20 + Math.random() * 20}s`,
-              }}
-            />
-          ))}
         </div>
       </section>
     </div>
